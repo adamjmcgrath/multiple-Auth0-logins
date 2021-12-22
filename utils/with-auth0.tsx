@@ -57,7 +57,7 @@ const withAuthenticationRequired = (
       // This is how it currently is in @auth0/auth0-react, but leads to
       // multiple invocations of loginWithRedirect() in the case of multiple
       // renders.
-      loginOptions = {},
+      loginOptions,
 
       // Using a const prevents multiple invocations of loginWithRedirect().
       // loginOptions = emptyObject,
@@ -72,7 +72,7 @@ const withAuthenticationRequired = (
       const opts = {
         ...loginOptions,
         appState: {
-          ...loginOptions.appState,
+          ...(loginOptions && loginOptions.appState),
           returnTo: typeof returnTo === 'function' ? returnTo() : returnTo,
         },
       };
